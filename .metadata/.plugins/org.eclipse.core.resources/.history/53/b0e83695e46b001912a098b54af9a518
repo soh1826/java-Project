@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class word_Quiz {
+
+	public static void main(String[] args) {
+		String strArr[]= {"love", "happy", "tired", "java", "handsome"};//배열에 단어를 저장
+		Scanner sc=new Scanner(System.in);
+		String answer=getAnswer(strArr);
+		String question=getScrambledWord(answer);
+		
+		System.out.println("Question : "+ question);
+		System.out.println("Your answer ");
+		String an=sc.next();
+		if(an.equals("q")&&an.equals("Q")) {
+			System.exit(0);
+		}else {
+			while(an) {
+				
+			}
+		}//else
+		
+		System.out.println("answer : "+ answer);
+		
+
+	}//main
+	
+	public static String getAnswer(String strArr[]) {
+		int su=(int)(Math.random() *strArr.length);//배열 안 단어를 임의로 하나 정하는 것.
+		return strArr[su];//return strArr[(int)(Math.random() *strArr.length)]이것도 가능
+	}//getAnswer
+	
+	public static String getScrambledWord(String str) {
+		char[] chArr=str.toCharArray();
+		
+		
+		
+		for(int i=0;i<10;i++) {
+			int abc= (int)(Math.random() * str.length());
+			char temp=chArr[0];
+			chArr[0]=chArr[abc];
+			chArr[abc]=temp;
+		}//for
+		return new String(chArr);
+	}//1단계
+}

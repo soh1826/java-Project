@@ -1,0 +1,15 @@
+
+public class word_Quiz {
+
+	public static void main(String[] args) {
+		String strArr[]= {"love", "happy", "tired", "java", "handsome"};//배열에 단어를 저장
+		
+		getAnswer(strArr);
+		
+
+	}//main
+	
+	public static String getAnswer() {
+		
+	}
+}

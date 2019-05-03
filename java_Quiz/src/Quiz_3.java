@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Quiz_3 {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.print("신호값 10자리 입력 : ");
+		String a=sc.next();//nextline()은 공백까지 읽어줌.
+		char n=0;
+		if(a.length()>=10) {
+			for(int i=0;i<10;i++) {
+				n+=a.charAt(i)-48;//char니까 0=48 그러므로 '0'을 빼주거나 48을 빼주어야함
+			}
+			if(n%7!=4) {
+			System.out.println("GOOD");
+		}else {
+			System.out.println("Bad");
+		}
+		}else {
+			System.out.println("제품의 신호값이 10자리가 아닙니다.");
+			System.out.println("테스트를 종료합니다.");
+			System.exit(0);
+		}
+		
+		
+	}//main
+
+}
