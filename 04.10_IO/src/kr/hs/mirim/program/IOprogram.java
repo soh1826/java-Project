@@ -1,7 +1,7 @@
 package kr.hs.mirim.program;
 
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class IOprogram {
 
