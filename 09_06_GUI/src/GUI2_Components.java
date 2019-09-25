@@ -1,34 +1,101 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class GUI2_Components {
     public static void main(String[] args) {
-        JFrame frame=new JFrame("components");
-        JPanel panel=new JPanel();
-        JLabel lb0=new JLabel("JLabel");
-        JButton bt0=new JButton("JButton");
-        JCheckBox ch0=new JCheckBox("JCheckBox");
-        JCheckBox ch1=new JCheckBox("JCheckBox");
-        JRadioButton rb0=new JRadioButton("미성년자");
-        JRadioButton rb1=new JRadioButton("성인");
-        JTextField tf0=new JTextField("JTextField");
-        JTextArea ta0=new JTextArea(2,10);
-        String [] fruits= {"apple", "banana", "kiwi", "mango", "pear", "peach",
-                "berry", "strawberry", "blackberry"};
-        JComboBox combo = new JComboBox(fruits);
+        JFrame frame = new JFrame("Compeonents");
+        JPanel panel = new JPanel();
+        JLabel lb0 = new JLabel("JLabel");
+        JButton bt0 = new JButton("JButton");
+        JCheckBox cb0 = new JCheckBox("JCheckBox");
+        JCheckBox cb1 = new JCheckBox("JCheckBox");
+        JRadioButton rb0 = new JRadioButton("미성년자");
+        JRadioButton rb1 = new JRadioButton("성인");
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(rb0);
+        bg.add(rb1);
+        JTextField tf0 = new JTextField("JTextField");
+        JTextArea ta0 = new JTextArea(2,10);
+        String [] fruits  = {"- - - - - - -","apple", "banana", "kiwi", "lemon", "mango"};
+        JComboBox comboBox = new JComboBox(fruits);
 
-        panel.add(combo);
-        panel.add(ch0);
-        panel.add(ch1);
+        JPanel panelresult = new JPanel();
+        JLabel lbresult = new JLabel("Result");
+
+        cb1.setSelected(true);
+        rb0.setSelected(true);
+        tf0.setText("전화번호를 입력하세요.");
+        tf0.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent focusEvent) {    //관심받기
+                if(tf0.getText().equals("전화번호를 입력하세요.")) {
+                    tf0.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent focusEvent) {  //관심읽기
+                if (tf0.getText().equals("")) {
+                    tf0.setText("전화번호를 입력하세요.");
+                }
+            }
+        });
+        bt0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String result = "";
+                result += lb0.getText();
+                result += bt0.getText();
+                result += cb0.isSelected(); //참,거짓
+                result += cb1.isSelected();
+                result += rb0.isSelected();
+                result += rb1.isSelected();
+                result += tf0.getText();
+                result += ta0.getText();
+                result += comboBox.getSelectedIndex();
+                result += comboBox.getSelectedItem();
+                lbresult.setText(result);
+            }
+        });
+        ItemListener il = new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getSource() == cb0) {
+                    System.out.println("JCheckBox0 "  + cb0.isSelected());
+                }else if(e.getSource() == cb1) {
+                    System.out.println("JCheckBox1 "  + cb1.isSelected());
+                }else if(e.getSource() == rb0) {
+                    System.out.println("미성년자" + rb0.isSelected());
+                }else if(e.getSource() == rb1) {
+                    System.out.println("성인" + rb1.isSelected());
+                }else if(e.getSource() == comboBox) {
+                    System.out.println(comboBox.getSelectedItem());
+                }
+            }
+        };
+        cb0.addItemListener(il);
+        cb1.addItemListener(il);
+        rb0.addItemListener(il);
+        rb1.addItemListener(il);
+        comboBox.addItemListener(il);
+
+
+        panel.add(lb0);
+        panel.add(bt0);
+        panel.add(cb0);
+        panel.add(cb1);
         panel.add(rb0);
         panel.add(rb1);
         panel.add(tf0);
         panel.add(ta0);
-        panel.add(bt0);
+        panel.add(comboBox);
+        panel.add(lbresult);
+
         frame.add(panel);
 
-        frame.pack();
         frame.setPreferredSize(new Dimension(600, 400));
+        frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
